@@ -1,0 +1,11 @@
+#pragma once
+
+#ifdef HZ_PLATFORM_WINDOWS
+	#ifdef HZ_BUILD_DLL 
+		#define Hazel_API __declspec(dllexport)
+	#else
+		#define HAZEL_API __declspec(dllimport)
+	#endif
+#else
+	#error Only Windows Run
+#endif

@@ -1,0 +1,8 @@
+#direction
+.vs/
+bin/
+bin-int/
+
+#file
+
+*.user
