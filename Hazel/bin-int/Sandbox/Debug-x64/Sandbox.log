@@ -1,1 +1,6 @@
-﻿  Sandbox.vcxproj -> D:\MyFile\图形学\Hazel\Hazel\bin\Sandbox\Debug-x64\Sandbox.exe
+﻿  Sandbox.cpp
+D:\MyFile\Graphics\Hazel\Hazel\Hazel\src\Log.h(17,42): warning C4251: “Hazel::Log::s_CoreLogger”: class“std::shared_ptr<spdlog::logger>”需要有 dll 接口由 class“Hazel::Log”的客户端使用
+D:\MyFile\Graphics\Hazel\Hazel\Hazel\vendor\spd\include\spdlog\details\registry.h(33,31): message : 参见“std::shared_ptr<spdlog::logger>”的声明
+D:\MyFile\Graphics\Hazel\Hazel\Hazel\src\Log.h(18,42): warning C4251: “Hazel::Log::s_ClientLogger”: class“std::shared_ptr<spdlog::logger>”需要有 dll 接口由 class“Hazel::Log”的客户端使用
+D:\MyFile\Graphics\Hazel\Hazel\Hazel\vendor\spd\include\spdlog\details\registry.h(33,31): message : 参见“std::shared_ptr<spdlog::logger>”的声明
+  Sandbox.vcxproj -> D:\MyFile\Graphics\Hazel\Hazel\bin\Sandbox\Debug-x64\Sandbox.exe

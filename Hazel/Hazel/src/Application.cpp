@@ -1,5 +1,6 @@
 #include "Application.h"
 
+
 namespace Hazel {
 
 	Hazel::Application::Application()
