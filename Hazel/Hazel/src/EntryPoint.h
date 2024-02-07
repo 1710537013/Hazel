@@ -1,7 +1,7 @@
 #pragma once
 #include"Application.h"
 #include"Log.h"
-
+#include"hzpch.h"
 #ifdef HZ_PLATFORM_WINDOWS
 
 
@@ -9,10 +9,10 @@
 
 
 int main(int argc, char** argv) {
+	Hazel::Log::Init();
 
 	auto app = Hazel::CreateApplication();
 
-	Hazel::Log::Init();
 	HZ_CORE_ERROR("Core Error");
 	HZ_INFO("Client Info");
 	app->Run();
