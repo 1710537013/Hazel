@@ -35,7 +35,7 @@ namespace Hazel {
 			unsigned int Width, Height;
 			bool VSync;
 
-			EventCallbackFn EventCallback;
+			EventCallbackFn EventCallback;			//EventCallbackFn = std::function<void(Event&)>;  接受Event类型，且返回类型是void
 		};
 
 		WindowData m_Data;

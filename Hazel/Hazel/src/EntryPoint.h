@@ -13,8 +13,6 @@ int main(int argc, char** argv) {
 
 	auto app = Hazel::CreateApplication();
 
-	HZ_CORE_ERROR("Core Error");
-	HZ_INFO("Client Info");
 	app->Run();
 
 	delete app;

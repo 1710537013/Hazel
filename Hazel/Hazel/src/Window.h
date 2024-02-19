@@ -21,11 +21,10 @@ namespace Hazel {
 	};
 
 	// Interface representing a desktop system based Window
-	class Window
+	class HZ_API Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;
-
 		virtual ~Window() = default;
 
 		virtual void OnUpdate() = 0;
