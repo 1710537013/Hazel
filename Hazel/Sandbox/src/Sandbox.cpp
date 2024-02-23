@@ -3,19 +3,22 @@
 
 class ExampleLayer :public Hazel::Layer {
 public:
-	ExampleLayer():Layer("Example"){}
+	ExampleLayer() :Layer("Example") {}
 
 	void OnUpdate()override {
-		HZ_INFO("EXampleLayer");
+		//HZ_INFO("EXampleLayer");
 	}
 	void OnAttach() override {
 
 	}
 	void OnDetach()override {
 	};
-	
+
 	void OnEvent(Hazel::Event& event) {
-		HZ_TRACE("{0}", event);
+
+		if (Hazel::Input::IsKeyPressed(Hazel::Key::Tab)) {
+			HZ_TRACE("{0}", event);
+		}
 	}
 };
 
@@ -26,7 +29,6 @@ public:
 		PushLayer(new Hazel::ImGuiLayer());
 	};
 	~Sandbox() {};
-
 
 };
 

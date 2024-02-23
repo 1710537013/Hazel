@@ -153,6 +153,7 @@ HZ_CORE_ASSERT(status, "Failed to initialize Glad");
 
 	void WindowsWindow::OnUpdate()
 	{
+
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);				
 

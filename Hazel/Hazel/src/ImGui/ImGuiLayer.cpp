@@ -6,14 +6,8 @@
 #include "ImGuiLayer.h"
 #include <imgui_internal.h>
 //
-//#include"backends/imgui_impl_opengl3.h"
-//#include"backends/imgui_impl_glfw.h"
-
 #include"Platform/OpenGL/ImGuiOpenGLRenderer.h"
-
 #include <Application.h>
-
-//#include "ImGui/ImGuizmo.h"
 
 namespace Hazel {
 
@@ -37,10 +31,10 @@ namespace Hazel {
 		io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
 
 
-		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
-		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
-		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
+		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
+		////io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+		//io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoTaskBarIcons;
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoMerge;
 
@@ -81,12 +75,16 @@ namespace Hazel {
 
 	void ImGuiLayer::OnEvent(Event& e)
 	{
-		if (m_BlockEvents)
+		/*if (m_BlockEvents)
 		{
 			ImGuiIO& io = ImGui::GetIO();
 			e.Handled |= e.IsInCategory(EventCategoryMouse) & io.WantCaptureMouse;
 			e.Handled |= e.IsInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard;
-		}
+		}*/
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<MouseButtonPressedEvent>(std::bind(&ImGuiLayer::OnMouseButtonPressed, this, std::placeholders::_1));
+		dispatcher.Dispatch<MouseButtonReleasedEvent>(std::bind(&ImGuiLayer::OnMouseButtonReleased, this, std::placeholders::_1));
+		dispatcher.Dispatch<MouseMovedEvent>(std::bind(&ImGuiLayer::OnMouseCursorMoved, this, std::placeholders::_1));
 	}
 
 	void ImGuiLayer::OnUpdate()
@@ -170,9 +168,30 @@ namespace Hazel {
 		colors[ImGuiCol_TitleBgCollapsed] = ImVec4{ 0.15f, 0.1505f, 0.151f, 1.0f };
 	}
 
-	uint32_t ImGuiLayer::GetActiveWidgetID() const
+	/*uint32_t ImGuiLayer::GetActiveWidgetID() const
 	{
 		return GImGui->ActiveId;
+	}*/
+
+	bool ImGuiLayer::OnMouseButtonReleased(MouseButtonReleasedEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.MouseDown[e.GetMouseButton()] = false;
+		return true;
+	}
+
+	bool ImGuiLayer::OnMouseButtonPressed(MouseButtonPressedEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.MouseDown[e.GetMouseButton()] = true;
+		return true;
+	}
+
+	bool ImGuiLayer::OnMouseCursorMoved(MouseMovedEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.MousePos = ImVec2((float)e.GetX(), (float)e.GetY());
+		return true;
 	}
 
 }

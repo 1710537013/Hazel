@@ -29,6 +29,10 @@ namespace Hazel {
 
 		uint32_t GetActiveWidgetID() const;
 	private:
+		bool OnMouseButtonReleased(MouseButtonReleasedEvent& e);
+		bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
+		bool OnMouseCursorMoved(MouseMovedEvent& e);
+	private:
 		bool m_BlockEvents = true;
 	};
 

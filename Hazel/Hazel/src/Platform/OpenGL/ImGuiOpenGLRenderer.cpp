@@ -70,8 +70,9 @@
 //  2017-05-01: OpenGL: Fixed save and restore of current blend func state.
 //  2017-05-01: OpenGL: Fixed save and restore of current GL_ACTIVE_TEXTURE.
 //  2016-09-05: OpenGL: Fixed save and restore of current scissor rectangle.
-//  2016-07-29: OpenGL: Explicitly setting GL_UNPACK_ROW_LENGTH to reduce issues because SDL changes it. (#752)
-
+//  2016-07-29: OpenGL: Explicitly setting GL_UNPACK_ROW_LENGTH to reduce issues because SDL changes it. (#752)SetActiveID
+// 
+// 
 //----------------------------------------
 // OpenGL    GLSL      GLSL
 // version   version   string

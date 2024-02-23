@@ -11,6 +11,6 @@ namespace Hazel {
 
 	Layer::~Layer()
 	{
+		
 	}
-	
 }
