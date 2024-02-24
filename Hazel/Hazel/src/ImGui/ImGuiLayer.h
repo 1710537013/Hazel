@@ -16,24 +16,17 @@ namespace Hazel {
 
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
-		virtual void OnEvent(Event& e) override;
-
-		virtual void OnUpdate();
+		virtual void OnImGuiRender();
 
 		void Begin();
 		void End();
 
 		void BlockEvents(bool block) { m_BlockEvents = block; }
-		
 		void SetDarkThemeColors();
-
-		uint32_t GetActiveWidgetID() const;
-	private:
-		bool OnMouseButtonReleased(MouseButtonReleasedEvent& e);
-		bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
-		bool OnMouseCursorMoved(MouseMovedEvent& e);
+		//uint32_t GetActiveWidgetID() const;
 	private:
 		bool m_BlockEvents = true;
+		float m_Time = 0.0f;
 	};
 
 }

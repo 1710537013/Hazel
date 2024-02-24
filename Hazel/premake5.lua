@@ -10,6 +10,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Hazel/vendor/GLFW/include"
 IncludeDir["Glad"] = "Hazel/vendor/Glad/include"
 IncludeDir["ImGui"] = "Hazel/vendor/ImGui"
+IncludeDir["glm"] = "Hazel/vendor/glm"
 
 include"Hazel/vendor/GLFW"  --将GLFW的.lua配置包含进来
 include"Hazel/vendor/Glad"  --将Glad的.lua配置包含进来
@@ -24,12 +25,31 @@ project "Hazel" -- 项目名字
     objdir ("bin-int/"..outputdir.."/%{prj.name}")   
     --这里写 bin-int是为了让生成的bin和中间文件排在一起好删除 ..是lua中的连接符
     
-    files{"%{prj.name}/src/**.h",  "%{prj.name}/src/**.cpp"}   -- **递归
+    files{
+        "%{prj.name}/src/**.h",
+        "%{prj.name}/src/**.cpp",
+        "%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
+    }   -- **递归
 
-    includedirs{"%{prj.name}/vendor/spd/include", "%{prj.name}/src", "%{IncludeDir.GLFW}", "%{IncludeDir.Glad}","%{IncludeDir.ImGui}"}
+    includedirs{
+        "%{prj.name}/vendor/spd/include", 
+        "%{prj.name}/src", 
+        "%{IncludeDir.GLFW}", 
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.ImGui}",
+        "%{IncludeDir.glm}"
+    }
 
 
-    links{"GLFW","opengl32.lib","dwmapi.lib","Glad","ImGui"}
+    links{
+        "GLFW",
+        "opengl32.lib",
+        "dwmapi.lib",
+        "Glad"
+        --"ImGui"
+    }
 
     pchheader "hzpch.h"
     pchsource "%{prj.name}/src/hzpch.cpp"
@@ -63,7 +83,12 @@ project "Sandbox"
     objdir ("bin-int/"..outputdir.."/%{prj.name}")   
     
     files{"%{prj.name}/src/**.h",  "%{prj.name}/src/**.cpp"}  
-    includedirs{"Hazel/vendor/spd/include", "Hazel/src"}
+    includedirs{
+        "Hazel/vendor/spd/include", 
+        "Hazel/src",
+        "%{IncludeDir.glm}",
+        "%{IncludeDir.ImGui}"
+    }
 
     links{"Hazel"}
     filter"system:windows" 

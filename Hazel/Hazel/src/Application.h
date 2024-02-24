@@ -5,6 +5,7 @@
 #include"Input.h"
 #include <Events/ApplicationEvent.h>
 #include"LayerStack.h"
+#include <ImGui/ImGuiLayer.h>
 
 namespace Hazel {
 
@@ -27,6 +28,7 @@ namespace Hazel {
 	private:
 		LayerStack m_LayerStack;
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 
 		static Application* Instance ;

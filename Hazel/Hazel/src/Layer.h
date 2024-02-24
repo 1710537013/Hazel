@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Events/Event.h"
 #include"Core.h"
+#include "Events/Event.h"
 
 namespace Hazel {
 
@@ -11,10 +11,11 @@ namespace Hazel {
 		Layer(const std::string& name = "Layer");
 		virtual ~Layer();
 
-		virtual void OnAttach() = 0;
-		virtual void OnDetach() = 0;
-		virtual void OnUpdate() = 0;
-		virtual void OnEvent(Hazel::Event& event) = 0;
+		virtual void OnAttach() {};
+		virtual void OnDetach() {};
+		virtual void OnUpdate() {};
+		virtual void OnImGuiRender() {}
+		virtual void OnEvent(Hazel::Event& event) {};
 
 		const std::string& GetName() const { return m_DebugName; }
 	protected:
